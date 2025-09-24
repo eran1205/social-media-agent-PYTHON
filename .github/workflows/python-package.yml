@@ -30,5 +30,7 @@ jobs:
         python -m pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - uses: streamlit/streamlit-app-action@v0.0.3
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       with:
         app-path: streamlit_app.py # Replace with your main Streamlit app file
