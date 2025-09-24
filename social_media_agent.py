@@ -4,6 +4,7 @@
 import asyncio
 import os
 from youtube_transcript_api import YouTubeTranscriptApi
+from youtube_transcript_api.proxies import WebshareProxyConfig
 from youtube_transcript_api._errors import (
     TranscriptsDisabled,
     NoTranscriptFound,
@@ -99,7 +100,13 @@ def get_transcript(video_id: str, languages: list = None) -> str:
 
     try:
         # Use the Youtube transcript API
-        ytt_api = YouTubeTranscriptApi()
+        ytt_api = YouTubeTranscriptApi(
+            proxy_config=WebshareProxyConfig(
+                proxy_username="rytewsal",
+                proxy_password="q3i4qcuwd610"
+            )
+        )
+
         fetched_transcript = ytt_api.fetch(video_id, languages)
 
         # More efficient way to concatenate all text snippets
